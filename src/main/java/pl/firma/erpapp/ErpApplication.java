@@ -1,4 +1,4 @@
-package pl.firma.emptyweb;
+package pl.firma.erpapp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
