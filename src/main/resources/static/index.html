@@ -7,6 +7,9 @@
     <link rel="icon" type="image/png" sizes="64x64" href="/favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- HLS.JS (WYMAGANE DLA FIREFOX) -->
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+
     <style>
         html, body {
             margin: 0;
@@ -26,22 +29,37 @@
         }
 
         .camera-box {
-            width: 640px;
-            border: 3px solid #000;
-            background-color: #000;
+            width: 800px;
+            background: black;
+            border: 3px solid black;
         }
 
-        .camera-box img {
+        video {
             width: 100%;
-            display: block;
+            height: auto;
         }
     </style>
 </head>
 <body>
 
 <div class="camera-box">
-    <img src="http://localhost:8090/cam.mjpg" alt="Podgląd kamery Dahua">
+    <video id="cam" controls autoplay muted></video>
 </div>
+
+<script>
+    const video = document.getElementById('cam');
+    const src = '/cam.m3u8';
+
+    if (Hls.isSupported()) {
+        const hls = new Hls();
+        hls.loadSource(src);
+        hls.attachMedia(video);
+    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+        video.src = src;
+    } else {
+        alert("Twoja przeglądarka nie obsługuje HLS");
+    }
+</script>
 
 </body>
 </html>
