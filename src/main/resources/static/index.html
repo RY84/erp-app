@@ -4,10 +4,7 @@
     <meta charset="UTF-8">
     <title>Akuś ERP - WSMR</title>
 
-    <!-- FAVICON -->
     <link rel="icon" type="image/png" sizes="64x64" href="/favicon.png">
-
-    <!-- RESPONSIVE -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <style>
@@ -43,8 +40,15 @@
 <body>
 
 <div class="camera-box">
-    <img src="http://localhost:8090/cam.mjpg" alt="Podgląd kamery Dahua">
+    <img id="cam" src="http://localhost:8090/cam.mjpg?ts=0" alt="Podgląd kamery Dahua">
 </div>
+
+<script>
+    setInterval(() => {
+        const cam = document.getElementById("cam");
+        cam.src = "http://localhost:8090/cam.mjpg?ts=" + Date.now();
+    }, 200);
+</script>
 
 </body>
 </html>
