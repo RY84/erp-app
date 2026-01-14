@@ -2,49 +2,82 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>ERP – Podgląd kamer</title>
+    <title>Akuś ERP - WSMR</title>
+
+    <!-- favicon -->
+    <link rel="icon" type="image/png" sizes="64x64" href="/favicon.png">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- HLS.js -->
+    <!-- HLS.js (player jak YouTube/Twitch) -->
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
     <style>
-        body {
+        html, body {
             margin: 0;
-            background: #111;
+            padding: 0;
+            height: 100%;
+        }
+
+        body {
+            background-image: url("/volvo_white.png");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+        }
+
+        .video-wrapper {
+            background: rgba(0, 0, 0, 0.85);
+            padding: 12px;
+            box-shadow: 0 0 25px rgba(0,0,0,0.8);
         }
 
         video {
-            width: 90%;
-            max-width: 1280px;
+            width: 960px;
+            max-width: 95vw;
             background: black;
         }
     </style>
 </head>
 <body>
 
-<video id="video" controls autoplay muted></video>
+<div class="video-wrapper">
+    <video id="video" controls muted autoplay></video>
+</div>
 
 <script>
     const video = document.getElementById('video');
-    const streamUrl = '/hls/cam.m3u8';
+    const streamUrl = '/hls/cam.m3u8';   // <<< TO JEST KLUCZOWE
 
     if (Hls.isSupported()) {
         const hls = new Hls({
-            liveSyncDuration: 2,
-            lowLatencyMode: true
+            lowLatencyMode: false,
+            backBufferLength: 30
         });
+
+        hls.on(Hls.Events.ERROR, function (event, data) {
+            console.error('HLS error:', data);
+        });
+
         hls.loadSource(streamUrl);
         hls.attachMedia(video);
+
+        hls.on(Hls.Events.MANIFEST_PARSED, function () {
+            video.play();
+        });
+
     } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+        // Safari / natywne HLS
         video.src = streamUrl;
+        video.addEventListener('loadedmetadata', function () {
+            video.play();
+        });
     } else {
-        alert('Twoja przeglądarka nie obsługuje HLS');
+        alert('Ta przeglądarka nie obsługuje HLS');
     }
 </script>
 
