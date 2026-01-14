@@ -2,62 +2,49 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>Akuś ERP - WSMR</title>
+    <title>ERP – Podgląd kamer</title>
 
-    <link rel="icon" type="image/png" sizes="64x64" href="/favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- HLS.JS (WYMAGANE DLA FIREFOX) -->
+    <!-- HLS.js -->
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
     <style>
-        html, body {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-        }
-
         body {
-            background-image: url("/volvo_white.png");
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-
+            margin: 0;
+            background: #111;
             display: flex;
-            justify-content: center;
             align-items: center;
-        }
-
-        .camera-box {
-            width: 800px;
-            background: black;
-            border: 3px solid black;
+            justify-content: center;
+            height: 100vh;
         }
 
         video {
-            width: 100%;
-            height: auto;
+            width: 90%;
+            max-width: 1280px;
+            background: black;
         }
     </style>
 </head>
 <body>
 
-<div class="camera-box">
-    <video id="cam" controls autoplay muted></video>
-</div>
+<video id="video" controls autoplay muted></video>
 
 <script>
-    const video = document.getElementById('cam');
-    const src = '/cam.m3u8';
+    const video = document.getElementById('video');
+    const streamUrl = '/hls/cam.m3u8';
 
     if (Hls.isSupported()) {
-        const hls = new Hls();
-        hls.loadSource(src);
+        const hls = new Hls({
+            liveSyncDuration: 2,
+            lowLatencyMode: true
+        });
+        hls.loadSource(streamUrl);
         hls.attachMedia(video);
     } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-        video.src = src;
+        video.src = streamUrl;
     } else {
-        alert("Twoja przeglądarka nie obsługuje HLS");
+        alert('Twoja przeglądarka nie obsługuje HLS');
     }
 </script>
 
