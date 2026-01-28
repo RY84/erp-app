@@ -9,9 +9,6 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- HLS.js (player jak YouTube/Twitch) -->
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-
     <style>
         html, body {
             margin: 0;
@@ -28,58 +25,36 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            font-family: Arial, sans-serif;
         }
 
-        .video-wrapper {
-            background: rgba(0, 0, 0, 0.85);
-            padding: 12px;
+        .overlay {
+            background: rgba(0, 0, 0, 0.75);
+            padding: 24px 32px;
             box-shadow: 0 0 25px rgba(0,0,0,0.8);
+            color: #fff;
+            text-align: center;
         }
 
-        video {
-            width: 960px;
-            max-width: 95vw;
-            background: black;
+        .overlay h1 {
+            margin: 0 0 10px 0;
+            font-size: 28px;
+            font-weight: normal;
+        }
+
+        .overlay p {
+            margin: 0;
+            font-size: 14px;
+            opacity: 0.85;
         }
     </style>
 </head>
 <body>
 
-<div class="video-wrapper">
-    <video id="video" controls muted autoplay></video>
+<div class="overlay">
+    <h1>Akuś ERP – WSMR</h1>
+    <p>System zarządzania i monitoringu</p>
 </div>
-
-<script>
-    const video = document.getElementById('video');
-    const streamUrl = '/hls/cam.m3u8';   // <<< TO JEST KLUCZOWE
-
-    if (Hls.isSupported()) {
-        const hls = new Hls({
-            lowLatencyMode: false,
-            backBufferLength: 30
-        });
-
-        hls.on(Hls.Events.ERROR, function (event, data) {
-            console.error('HLS error:', data);
-        });
-
-        hls.loadSource(streamUrl);
-        hls.attachMedia(video);
-
-        hls.on(Hls.Events.MANIFEST_PARSED, function () {
-            video.play();
-        });
-
-    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-        // Safari / natywne HLS
-        video.src = streamUrl;
-        video.addEventListener('loadedmetadata', function () {
-            video.play();
-        });
-    } else {
-        alert('Ta przeglądarka nie obsługuje HLS');
-    }
-</script>
 
 </body>
 </html>
