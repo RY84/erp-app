@@ -3,6 +3,7 @@ package pl.firma.erpapp;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -14,6 +15,7 @@ public class ErpApplication {
 	}
 
 	@Configuration
+	@Profile("linux")
 	static class StaticConfig implements WebMvcConfigurer {
 
 		@Override

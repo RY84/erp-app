@@ -2,34 +2,19 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>Akuś ERP - WSMR</title>
-
-    <!-- favicon -->
-    <link rel="icon" type="image/png" sizes="64x64" href="/favicon.png">
-
+    <title>RY84</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        html, body {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-        }
-
-        body {
-            background-color: #000;
-            background-image: url("/tło.jpg");
-            background-size: contain;
-            background-position: center center;
-            background-repeat: no-repeat;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: Arial, sans-serif;
-        }
-    </style>
+    <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
+
+<div class="login-container">
+    <input type="text" id="login" placeholder="Login">
+    <input type="password" id="password" placeholder="Hasło">
+    <button id="loginBtn">Zaloguj</button>
+</div>
+
+<script src="js/auth.js"></script>
 </body>
 </html>
