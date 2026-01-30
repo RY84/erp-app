@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const loggedIn = localStorage.getItem("loggedIn");
 
     if (loggedIn === "true") {
-        loadView("empty");
+        loadView("dashboard");
     } else {
         loadView("login");
     }
@@ -16,16 +16,31 @@ function loadView(name) {
 
             if (name === "login") {
                 bindLogin();
-            }
-
-            if (name === "empty") {
+            } else {
                 bindLogout();
                 showLoggedUser();
+                bindSidebar();
             }
         })
         .catch(err => {
             console.error("Błąd ładowania widoku:", err);
         });
+}
+
+function bindSidebar() {
+    const items = document.querySelectorAll(".menu-item");
+
+    items.forEach(item => {
+        item.addEventListener("click", () => {
+            const view = item.getAttribute("data-view");
+            if (!view) return;
+
+            items.forEach(i => i.classList.remove("active"));
+            item.classList.add("active");
+
+            loadView(view);
+        });
+    });
 }
 
 function bindLogin() {
@@ -37,11 +52,10 @@ function bindLogin() {
 
         const username = form.querySelector('input[type="text"]').value;
 
-        // symulacja udanego logowania
         localStorage.setItem("loggedIn", "true");
         localStorage.setItem("username", username);
 
-        loadView("empty");
+        loadView("dashboard");
     });
 }
 
