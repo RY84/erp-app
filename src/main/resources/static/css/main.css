@@ -83,7 +83,7 @@ body {
 .topbar-right {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 14px;
 }
 
 /* WSPÓLNY STYL PRZYCISKÓW TOPBARU */
@@ -92,10 +92,16 @@ body {
     background: #1f1f1f;
     border: 1px solid #333;
     color: #e6e6e6;
-    padding: 0 16px;
+
+    /* POWIĘKSZENIE */
+    padding: 0 22px;
+    font-size: 15px;
+    letter-spacing: 0.3px;
+
     cursor: pointer;
     display: flex;
     align-items: center;
+    border-radius: 4px;
 }
 
 .topbar button:hover {
