@@ -4,8 +4,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const passwordInput = document.getElementById("password");
     const loginBtn = document.getElementById("loginBtn");
 
-    if (!loginBtn) {
-        return; // zabezpieczenie: nie jesteśmy na stronie logowania
+    // jeżeli nie jesteśmy na ekranie logowania – nic nie rób
+    if (!loginBtn || !loginInput || !passwordInput) {
+        return;
     }
 
     loginBtn.addEventListener("click", () => {
@@ -17,13 +18,14 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        // MOCK logowania (na razie)
+        // MOCK logowania
         localStorage.setItem("loggedIn", "true");
         localStorage.setItem("username", login);
         localStorage.setItem("role", "ADMIN");
 
-        // Przejście do panelu
-        window.location.href = "views/empty.html";
+        // ZOSTAJEMY NA index.html
+        // app.js sam załaduje właściwy widok (empty)
+        window.location.reload();
     });
 
 });
