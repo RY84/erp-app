@@ -22,7 +22,52 @@ body {
     color: #e6e6e6;
 }
 
-/* TOPBAR */
+/* ================= LOGIN ================= */
+
+.login-container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#loginForm {
+    width: 320px;
+    background: rgba(0, 0, 0, 0.75);
+    border: 1px solid #222;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#loginForm input {
+    background: #111;
+    border: 1px solid #333;
+    color: #e6e6e6;
+    padding: 10px;
+    font-size: 14px;
+}
+
+#loginForm input::placeholder {
+    color: #777;
+}
+
+#loginForm button {
+    margin-top: 8px;
+    padding: 10px;
+    background: #1f1f1f;
+    border: 1px solid #333;
+    color: #e6e6e6;
+    cursor: pointer;
+}
+
+#loginForm button:hover {
+    background: #2a2a2a;
+}
+
+/* ================= TOPBAR ================= */
+
 .topbar {
     height: 50px;
     background: rgba(0, 0, 0, 0.75);
@@ -50,13 +95,15 @@ body {
     background: #2a2a2a;
 }
 
-/* LAYOUT */
+/* ================= LAYOUT ================= */
+
 .layout {
     display: flex;
     height: calc(100% - 50px);
 }
 
-/* SIDEBAR */
+/* ================= SIDEBAR ================= */
+
 .sidebar {
     width: 220px;
     background: rgba(0, 0, 0, 0.85);
@@ -82,14 +129,16 @@ body {
     color: #ffffff;
 }
 
-/* CONTENT */
+/* ================= CONTENT ================= */
+
 .app-container {
     flex: 1;
     padding: 24px;
     overflow-y: auto;
 }
 
-/* KONTRAKT WIDOKU */
+/* ================= KONTRAKT WIDOKU ================= */
+
 .view-header h1 {
     font-size: 24px;
     margin-bottom: 4px;
@@ -111,13 +160,15 @@ body {
     padding: 16px;
 }
 
-/* EMPTY STATE */
+/* ================= EMPTY ================= */
+
 .empty-state {
     opacity: 0.6;
     font-style: italic;
 }
 
-/* DASHBOARD */
+/* ================= DASHBOARD ================= */
+
 .dashboard-cards {
     display: flex;
     gap: 16px;
@@ -146,7 +197,8 @@ body {
     opacity: 0.6;
 }
 
-/* TABELA */
+/* ================= TABLE ================= */
+
 .data-table {
     width: 100%;
     border-collapse: collapse;
@@ -166,21 +218,4 @@ body {
 
 .data-table tbody tr:hover {
     background: rgba(255, 255, 255, 0.04);
-}
-
-/* STATUSY */
-.data-table td:last-child {
-    font-weight: bold;
-}
-
-.data-table td:last-child:contains("Do akceptacji") {
-    color: #f0ad4e;
-}
-
-.data-table td:last-child:contains("Zaakceptowany") {
-    color: #5cb85c;
-}
-
-.data-table td:last-child:contains("Odrzucony") {
-    color: #d9534f;
 }
