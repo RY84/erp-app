@@ -78,21 +78,40 @@ body {
     border-bottom: 1px solid #222;
 }
 
-.user-info {
-    font-size: 14px;
-    opacity: 0.85;
+/* LEWA I PRAWA STRONA TOPBARU */
+.topbar-left,
+.topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
-.logout-btn {
+/* WSPÓLNY STYL PRZYCISKÓW TOPBARU */
+.topbar button {
+    height: 100%;
     background: #1f1f1f;
     border: 1px solid #333;
     color: #e6e6e6;
-    padding: 6px 12px;
+    padding: 0 16px;
     cursor: pointer;
+    display: flex;
+    align-items: center;
 }
 
-.logout-btn:hover {
+.topbar button:hover {
     background: #2a2a2a;
+}
+
+.topbar button.active {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: #444;
+}
+
+/* INFO O UŻYTKOWNIKU */
+.user-info {
+    font-size: 14px;
+    opacity: 0.85;
+    white-space: nowrap;
 }
 
 /* ================= LAYOUT ================= */
@@ -108,10 +127,6 @@ body {
     width: 220px;
     background: rgba(0, 0, 0, 0.85);
     border-right: 1px solid #222;
-}
-
-.sidebar-menu {
-    padding: 16px 0;
 }
 
 .menu-item {
