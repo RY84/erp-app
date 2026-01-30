@@ -45,7 +45,7 @@ function loadApp() {
 
             showUser();
             bindLogout();
-            bindSidebar();
+            bindNavigation();
 
             const hash = location.hash.replace("#", "");
             const startView = hash || "dashboard";
@@ -69,12 +69,15 @@ function loadView(view, push = true) {
         });
 }
 
-/* ================= SIDEBAR ================= */
+/* ================= NAVIGATION ================= */
+/* sidebar + topbar */
 
-function bindSidebar() {
-    document.querySelectorAll(".menu-item").forEach(item => {
+function bindNavigation() {
+    document.querySelectorAll("[data-view]").forEach(item => {
         item.addEventListener("click", () => {
-            loadView(item.dataset.view);
+            const view = item.dataset.view;
+            if (!view) return;
+            loadView(view);
         });
     });
 }
@@ -113,7 +116,7 @@ function showUser() {
 /* ================= MENU STATE ================= */
 
 function setActive(view) {
-    document.querySelectorAll(".menu-item").forEach(item => {
+    document.querySelectorAll("[data-view]").forEach(item => {
         item.classList.toggle(
             "active",
             item.dataset.view === view
