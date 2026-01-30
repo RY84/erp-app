@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-/* LOGIN */
+/* ================= LOGIN ================= */
 
 function loadLogin() {
     fetch("views/login.html")
@@ -25,6 +25,7 @@ function bindLogin() {
 
     form.addEventListener("submit", e => {
         e.preventDefault();
+
         const login = form.querySelector("input").value;
 
         localStorage.setItem("loggedIn", "true");
@@ -34,30 +35,41 @@ function bindLogin() {
     });
 }
 
-/* APP */
+/* ================= APP ================= */
 
 function loadApp() {
     fetch("views/app.html")
         .then(r => r.text())
         .then(html => {
             document.getElementById("root").innerHTML = html;
+
             showUser();
             bindLogout();
             bindSidebar();
-            loadView("dashboard");
+
+            const hash = location.hash.replace("#", "");
+            const startView = hash || "dashboard";
+
+            loadView(startView, false);
         });
 }
 
-function loadView(view) {
+/* ================= VIEW ROUTER ================= */
+
+function loadView(view, push = true) {
     fetch(`views/${view}.html`)
         .then(r => r.text())
         .then(html => {
             document.getElementById("view").innerHTML = html;
             setActive(view);
+
+            if (push) {
+                history.pushState({ view }, "", `#${view}`);
+            }
         });
 }
 
-/* SIDEBAR */
+/* ================= SIDEBAR ================= */
 
 function bindSidebar() {
     document.querySelectorAll(".menu-item").forEach(item => {
@@ -67,7 +79,15 @@ function bindSidebar() {
     });
 }
 
-/* LOGOUT */
+/* ================= HISTORY (WSTECZ / DALEJ) ================= */
+
+window.addEventListener("popstate", e => {
+    if (e.state && e.state.view) {
+        loadView(e.state.view, false);
+    }
+});
+
+/* ================= LOGOUT ================= */
 
 function bindLogout() {
     const btn = document.getElementById("logoutBtn");
@@ -75,22 +95,28 @@ function bindLogout() {
 
     btn.addEventListener("click", () => {
         localStorage.clear();
-        loadLogin();
+        location.reload();
     });
 }
 
-/* USER */
+/* ================= USER ================= */
 
 function showUser() {
     const user = localStorage.getItem("username");
     const info = document.getElementById("userInfo");
-    if (info) info.textContent = `Zalogowany użytkownik: ${user}`;
+
+    if (info && user) {
+        info.textContent = `Zalogowany użytkownik: ${user}`;
+    }
 }
 
-/* MENU */
+/* ================= MENU STATE ================= */
 
 function setActive(view) {
-    document.querySelectorAll(".menu-item").forEach(i =>
-        i.classList.toggle("active", i.dataset.view === view)
-    );
+    document.querySelectorAll(".menu-item").forEach(item => {
+        item.classList.toggle(
+            "active",
+            item.dataset.view === view
+        );
+    });
 }
