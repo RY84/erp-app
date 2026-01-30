@@ -8,6 +8,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
+/* ================= ROUTER ================= */
+
 function loadView(name) {
     fetch(`views/${name}.html`)
         .then(response => response.text())
@@ -19,7 +21,7 @@ function loadView(name) {
             } else {
                 bindLogout();
                 showLoggedUser();
-                bindSidebar();
+                markActiveMenu(name);
             }
         })
         .catch(err => {
@@ -27,21 +29,31 @@ function loadView(name) {
         });
 }
 
-function bindSidebar() {
+/* ================= SIDEBAR (DELEGACJA) ================= */
+
+document.addEventListener("click", (e) => {
+    const item = e.target.closest(".menu-item");
+    if (!item) return;
+
+    const view = item.getAttribute("data-view");
+    if (!view) return;
+
+    loadView(view);
+});
+
+/* ================= MENU STATE ================= */
+
+function markActiveMenu(view) {
     const items = document.querySelectorAll(".menu-item");
+    items.forEach(i => i.classList.remove("active"));
 
-    items.forEach(item => {
-        item.addEventListener("click", () => {
-            const view = item.getAttribute("data-view");
-            if (!view) return;
-
-            items.forEach(i => i.classList.remove("active"));
-            item.classList.add("active");
-
-            loadView(view);
-        });
-    });
+    const active = document.querySelector(`.menu-item[data-view="${view}"]`);
+    if (active) {
+        active.classList.add("active");
+    }
 }
+
+/* ================= AUTH ================= */
 
 function bindLogin() {
     const form = document.getElementById("loginForm");
