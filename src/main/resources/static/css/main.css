@@ -93,7 +93,6 @@ body {
     border: 1px solid #333;
     color: #e6e6e6;
 
-    /* POWIĘKSZENIE */
     padding: 0 22px;
     font-size: 15px;
     letter-spacing: 0.3px;
@@ -133,6 +132,18 @@ body {
     width: 220px;
     background: rgba(0, 0, 0, 0.85);
     border-right: 1px solid #222;
+}
+
+/* >>> DODANE: TYTUŁ SIDEBARU <<< */
+.sidebar-title {
+    text-align: center;
+    padding: 14px 0;
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: #9a9a9a;
+    border-bottom: 1px solid #222;
+    text-transform: uppercase;
+    opacity: 0.85;
 }
 
 .menu-item {
