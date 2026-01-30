@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const loggedIn = localStorage.getItem("loggedIn");
 
     if (loggedIn === "true") {
-        loadApp();
+        loadApp(true);
     } else {
         loadLogin();
     }
@@ -31,13 +31,15 @@ function bindLogin() {
         localStorage.setItem("loggedIn", "true");
         localStorage.setItem("username", login);
 
-        loadApp();
+        // PO LOGINIE ZAWSZE PULPIT
+        history.replaceState(null, "", "#dashboard");
+        loadApp(false);
     });
 }
 
 /* ================= APP ================= */
 
-function loadApp() {
+function loadApp(allowHash) {
     fetch("views/app.html")
         .then(r => r.text())
         .then(html => {
@@ -47,8 +49,12 @@ function loadApp() {
             bindLogout();
             bindNavigation();
 
-            const hash = location.hash.replace("#", "");
-            const startView = hash || "dashboard";
+            let startView = "dashboard";
+
+            if (allowHash) {
+                const hash = location.hash.replace("#", "");
+                if (hash) startView = hash;
+            }
 
             loadView(startView, false);
         });
