@@ -1,7 +1,42 @@
-/* ================= TOPBAR – GUZIKI (ŚWIĘTE) ================= */
+/* ================= RESET ================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+html, body {
+    height: 100%;
+}
+
+/* ================= TŁO ================= */
+
+body {
+    background-color: #000;
+    background-image:
+        url("../tlo_2.png"),
+        url("../cosmos.png");
+    background-repeat: no-repeat, no-repeat;
+    background-size: contain, cover;
+    background-position: center center, center center;
+    color: #e6e6e6;
+}
+
+/* ================= LOGIN ================= */
+
+.login-container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ================= TOPBAR ================= */
 
 .topbar {
-    height: 50px;
+    height: 56px; /* lekko powiększony */
     background: rgba(0, 0, 0, 0.75);
     display: flex;
     align-items: center;
@@ -23,8 +58,8 @@
     border: 1px solid #333;
     color: #e6e6e6;
 
-    padding: 0 22px;
-    font-size: 15px;
+    padding: 0 26px;      /* było 22px */
+    font-size: 16px;     /* było 15px */
     letter-spacing: 0.3px;
 
     cursor: pointer;
@@ -40,4 +75,104 @@
 .topbar button.active {
     background: rgba(255, 255, 255, 0.08);
     border-color: #444;
+}
+
+/* ================= LAYOUT ================= */
+
+.layout {
+    display: flex;
+    height: calc(100vh - 56px); /* pod nową wysokość topbara */
+    overflow: hidden;
+}
+
+/* ================= SIDEBAR ================= */
+
+.sidebar {
+    width: 220px;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    border-right: 1px solid #222;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-title {
+    text-align: center;
+    padding: 14px 0;
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: #9a9a9a;
+    border-bottom: 1px solid #222;
+    text-transform: uppercase;
+    opacity: 0.85;
+}
+
+.menu-item {
+    padding: 12px 20px;
+    cursor: pointer;
+    color: #cfcfcf;
+}
+
+.menu-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.menu-item.active {
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+}
+
+/* ================= CONTENT ================= */
+
+.app-container {
+    flex: 1;
+    height: 100%;
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ================= KONTRAKT WIDOKU ================= */
+
+.view-header {
+    padding: 24px 24px 12px 24px;
+}
+
+.view-header h1 {
+    font-size: 24px;
+}
+
+/* standardowa zawartość widoku (scrollowana) */
+.view-content {
+    flex: 1;
+    padding: 24px;
+    overflow-y: auto;
+    background: rgba(0, 0, 0, 0.6);
+    border-top: 1px solid #222;
+}
+
+/* ================= TRANSPORT (MAPA) ================= */
+
+/* mapa wypełnia CAŁY obszar roboczy */
+#transport-map {
+    flex: 1;
+    width: 100%;
+    height: 100%;
+}
+
+/* ================= DASHBOARD ================= */
+
+.dashboard-cards {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+/* ================= TABLE ================= */
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
 }
