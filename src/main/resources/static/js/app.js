@@ -72,7 +72,6 @@ function loadView(view, push = true) {
                 history.pushState({ view }, "", `#${view}`);
             }
 
-            // HOOKI POD WIDOKI
             if (view === "transport") {
                 initTransportMap();
             }
@@ -81,38 +80,55 @@ function loadView(view, push = true) {
 
 /* ================= TRANSPORT MAP ================= */
 
-let transportMapInitialized = false;
+let leafletLoaded = false;
+let transportMap = null;
 
 function initTransportMap() {
-    if (transportMapInitialized) return;
-    transportMapInitialized = true;
+    if (!leafletLoaded) {
+        leafletLoaded = true;
 
-    // doładuj Leaflet dynamicznie (raz)
-    const css = document.createElement("link");
-    css.rel = "stylesheet";
-    css.href = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css";
-    document.head.appendChild(css);
+        const css = document.createElement("link");
+        css.rel = "stylesheet";
+        css.href = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css";
+        document.head.appendChild(css);
 
-    const script = document.createElement("script");
-    script.src = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js";
+        const script = document.createElement("script");
+        script.src = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js";
 
-    script.onload = () => {
-        const map = L.map("transport-map").setView(
-            [52.2297, 21.0122],
-            6
-        );
+        script.onload = () => {
+            createTransportMap();
+        };
 
-        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-            maxZoom: 19,
-            attribution: "© OpenStreetMap"
-        }).addTo(map);
+        document.body.appendChild(script);
+    } else {
+        createTransportMap();
+    }
+}
 
-        setTimeout(() => {
-            map.invalidateSize();
-        }, 200);
-    };
+function createTransportMap() {
+    const container = document.getElementById("transport-map");
+    if (!container) return;
 
-    document.body.appendChild(script);
+    // jeżeli mapa istniała wcześniej — usuń ją poprawnie
+    if (transportMap) {
+        transportMap.remove();
+        transportMap = null;
+    }
+
+    transportMap = L.map(container).setView(
+        [52.2297, 21.0122], // Polska
+        6
+    );
+
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19,
+        attribution: "© OpenStreetMap"
+    }).addTo(transportMap);
+
+    // SPA + layout fix
+    setTimeout(() => {
+        transportMap.invalidateSize();
+    }, 200);
 }
 
 /* ================= NAVIGATION ================= */
