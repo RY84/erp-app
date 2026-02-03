@@ -31,41 +31,6 @@ body {
     justify-content: center;
 }
 
-#loginForm {
-    width: 320px;
-    background: rgba(0, 0, 0, 0.75);
-    border: 1px solid #222;
-    padding: 24px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-#loginForm input {
-    background: #111;
-    border: 1px solid #333;
-    color: #e6e6e6;
-    padding: 10px;
-    font-size: 14px;
-}
-
-#loginForm input::placeholder {
-    color: #777;
-}
-
-#loginForm button {
-    margin-top: 8px;
-    padding: 10px;
-    background: #1f1f1f;
-    border: 1px solid #333;
-    color: #e6e6e6;
-    cursor: pointer;
-}
-
-#loginForm button:hover {
-    background: #2a2a2a;
-}
-
 /* ================= TOPBAR ================= */
 
 .topbar {
@@ -78,63 +43,26 @@ body {
     border-bottom: 1px solid #222;
 }
 
-/* LEWA I PRAWA STRONA TOPBARU */
-.topbar-left,
-.topbar-right {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-}
-
-/* WSPÓLNY STYL PRZYCISKÓW TOPBARU */
-.topbar button {
-    height: 100%;
-    background: #1f1f1f;
-    border: 1px solid #333;
-    color: #e6e6e6;
-
-    padding: 0 22px;
-    font-size: 15px;
-    letter-spacing: 0.3px;
-
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    border-radius: 4px;
-}
-
-.topbar button:hover {
-    background: #2a2a2a;
-}
-
-.topbar button.active {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: #444;
-}
-
-/* INFO O UŻYTKOWNIKU */
-.user-info {
-    font-size: 14px;
-    opacity: 0.85;
-    white-space: nowrap;
-}
-
 /* ================= LAYOUT ================= */
 
 .layout {
     display: flex;
-    height: calc(100% - 50px);
+    height: calc(100vh - 50px); /* <<< ZMIANA >>> */
+    overflow: hidden;          /* <<< ZMIANA >>> */
 }
 
 /* ================= SIDEBAR ================= */
 
 .sidebar {
     width: 220px;
+    height: 100%;              /* <<< ZMIANA >>> */
     background: rgba(0, 0, 0, 0.85);
     border-right: 1px solid #222;
+    display: flex;             /* <<< ZMIANA >>> */
+    flex-direction: column;    /* <<< ZMIANA >>> */
 }
 
-/* >>> DODANE: TYTUŁ SIDEBARU <<< */
+/* SIDEBAR TITLE */
 .sidebar-title {
     text-align: center;
     padding: 14px 0;
@@ -165,38 +93,39 @@ body {
 
 .app-container {
     flex: 1;
-    padding: 24px;
-    overflow-y: auto;
+    height: 100%;              /* <<< ZMIANA >>> */
+    padding: 0;                /* <<< ZMIANA >>> */
+    overflow: hidden;          /* <<< ZMIANA >>> */
+    display: flex;             /* <<< ZMIANA >>> */
+    flex-direction: column;    /* <<< ZMIANA >>> */
 }
 
 /* ================= KONTRAKT WIDOKU ================= */
 
+.view-header {
+    padding: 24px 24px 12px 24px; /* <<< ZMIANA >>> */
+}
+
 .view-header h1 {
     font-size: 24px;
-    margin-bottom: 4px;
 }
 
-.view-subtitle {
-    font-size: 14px;
-    opacity: 0.7;
-    margin-bottom: 24px;
-}
-
-.view-toolbar {
-    margin-bottom: 16px;
-}
-
+/* domyślna zawartość widoku (scrollowana) */
 .view-content {
+    flex: 1;
+    padding: 24px;
+    overflow-y: auto;          /* <<< ZMIANA >>> */
     background: rgba(0, 0, 0, 0.6);
-    border: 1px solid #222;
-    padding: 16px;
+    border-top: 1px solid #222;
 }
 
-/* ================= EMPTY ================= */
+/* ================= TRANSPORT (MAPA) ================= */
 
-.empty-state {
-    opacity: 0.6;
-    font-style: italic;
+/* mapa NIE ma scrolla, NIE ma paddingów */
+#transport-map {
+    flex: 1;
+    width: 100%;
+    height: 100%;
 }
 
 /* ================= DASHBOARD ================= */
@@ -207,47 +136,10 @@ body {
     margin-bottom: 24px;
 }
 
-.dashboard-card {
-    flex: 1;
-    background: rgba(0, 0, 0, 0.7);
-    border: 1px solid #222;
-    padding: 16px;
-}
-
-.card-title {
-    font-size: 14px;
-    opacity: 0.7;
-}
-
-.card-value {
-    font-size: 28px;
-    margin: 8px 0;
-}
-
-.card-hint {
-    font-size: 12px;
-    opacity: 0.6;
-}
-
 /* ================= TABLE ================= */
 
 .data-table {
     width: 100%;
     border-collapse: collapse;
     font-size: 14px;
-}
-
-.data-table thead {
-    background: rgba(255, 255, 255, 0.05);
-}
-
-.data-table th,
-.data-table td {
-    padding: 10px 12px;
-    border-bottom: 1px solid #222;
-    text-align: left;
-}
-
-.data-table tbody tr:hover {
-    background: rgba(255, 255, 255, 0.04);
 }
