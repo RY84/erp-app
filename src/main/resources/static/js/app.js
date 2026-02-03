@@ -31,7 +31,6 @@ function bindLogin() {
         localStorage.setItem("loggedIn", "true");
         localStorage.setItem("username", login);
 
-        // PO LOGINIE ZAWSZE PULPIT
         history.replaceState(null, "", "#dashboard");
         loadApp(false);
     });
@@ -72,11 +71,51 @@ function loadView(view, push = true) {
             if (push) {
                 history.pushState({ view }, "", `#${view}`);
             }
+
+            // HOOKI POD WIDOKI
+            if (view === "transport") {
+                initTransportMap();
+            }
         });
 }
 
+/* ================= TRANSPORT MAP ================= */
+
+let transportMapInitialized = false;
+
+function initTransportMap() {
+    if (transportMapInitialized) return;
+    transportMapInitialized = true;
+
+    // doładuj Leaflet dynamicznie (raz)
+    const css = document.createElement("link");
+    css.rel = "stylesheet";
+    css.href = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css";
+    document.head.appendChild(css);
+
+    const script = document.createElement("script");
+    script.src = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js";
+
+    script.onload = () => {
+        const map = L.map("transport-map").setView(
+            [52.2297, 21.0122],
+            6
+        );
+
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            maxZoom: 19,
+            attribution: "© OpenStreetMap"
+        }).addTo(map);
+
+        setTimeout(() => {
+            map.invalidateSize();
+        }, 200);
+    };
+
+    document.body.appendChild(script);
+}
+
 /* ================= NAVIGATION ================= */
-/* sidebar + topbar */
 
 function bindNavigation() {
     document.querySelectorAll("[data-view]").forEach(item => {
@@ -88,7 +127,7 @@ function bindNavigation() {
     });
 }
 
-/* ================= HISTORY (WSTECZ / DALEJ) ================= */
+/* ================= HISTORY ================= */
 
 window.addEventListener("popstate", e => {
     if (e.state && e.state.view) {
