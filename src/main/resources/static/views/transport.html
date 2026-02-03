@@ -1,3 +1,46 @@
 <section class="view-header">
     <h1>Transport</h1>
 </section>
+
+<div
+        id="transport-map"
+        style="
+        width: 100%;
+        height: calc(100vh - 120px);
+        min-height: 400px;
+        background: #000;
+    ">
+</div>
+
+<!-- Leaflet CSS -->
+<link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+/>
+
+<!-- Leaflet JS -->
+<script
+        src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+</script>
+
+<script>
+    // zabezpieczenie przed ponowną inicjalizacją (SPA)
+    if (!window.transportMapInitialized) {
+        window.transportMapInitialized = true;
+
+        const map = L.map("transport-map").setView(
+            [52.2297, 21.0122], // Polska
+            6
+        );
+
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            maxZoom: 19,
+            attribution: "© OpenStreetMap"
+        }).addTo(map);
+
+        // poprawne przeliczenie rozmiaru po załadowaniu widoku
+        setTimeout(() => {
+            map.invalidateSize();
+        }, 200);
+    }
+</script>
