@@ -111,7 +111,7 @@ body {
     border-bottom: none;
     color: #e6e6e6;
     padding: 0 20px;
-    font-size: 14px;
+    font-size: 18px;
     letter-spacing: 0.3px;
     cursor: pointer;
     display: flex;
@@ -133,7 +133,7 @@ body {
     align-items: center;
     height: 100%;
     padding: 0 16px;
-    font-size: 14px;
+    font-size: 18px;
     color: #cfcfcf;
 }
 
