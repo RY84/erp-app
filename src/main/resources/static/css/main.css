@@ -111,7 +111,7 @@ body {
     border-bottom: none;
     color: #e6e6e6;
     padding: 0 20px;
-    font-size: 16px; /* UJEDNOLICONE */
+    font-size: 16px;
     letter-spacing: 0.3px;
     cursor: pointer;
     display: flex;
@@ -133,7 +133,7 @@ body {
     align-items: center;
     height: 100%;
     padding: 0 16px;
-    font-size: 16px; /* UJEDNOLICONE */
+    font-size: 16px;
     color: #cfcfcf;
 }
 
@@ -218,7 +218,7 @@ body {
     overflow-y: auto;
     background: rgba(0, 0, 0, 0.6);
     border-top: 1px solid #222;
-    min-height: 0; /* KLUCZOWE – NAPRAWA MAPY */
+    min-height: 0;
 }
 
 /* ================= TRANSPORT ================= */
@@ -242,7 +242,7 @@ body {
     border-right: 1px solid #222;
     color: #e6e6e6;
     padding: 0 20px;
-    font-size: 16px; /* UJEDNOLICONE */
+    font-size: 16px;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -297,7 +297,7 @@ body {
     font-size: 14px;
 }
 
-/* ================= LEAFLET FIX ================= */
+/* ================= LEAFLET SAFE FIX ================= */
 
 .leaflet-container {
     background: #000;
@@ -305,9 +305,4 @@ body {
 
 .leaflet-tile {
     outline: 1px solid transparent;
-}
-
-.leaflet-pane,
-.leaflet-tile-pane {
-    transform: translateZ(0);
 }
