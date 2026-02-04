@@ -15,21 +15,14 @@ services:
       - erp-net
 
   erp-api:
-    image: node:20-alpine
+    build:
+      context: ./api
+      dockerfile: Dockerfile
     container_name: erp-api
-    working_dir: /app
-    volumes:
-      - ./api:/app
-    command: sh -c "npm install && npm run dev"
     restart: unless-stopped
     environment:
-      - NODE_ENV=development
+      - NODE_ENV=production
       - PORT=3000
-      - DB_HOST=erp-db
-      - DB_PORT=5432
-      - DB_NAME=erp
-      - DB_USER=erp
-      - DB_PASSWORD=erp
     ports:
       - "3000:3000"
     depends_on:
