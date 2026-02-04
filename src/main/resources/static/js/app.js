@@ -125,8 +125,16 @@ function createTransportMap() {
         attribution: "© OpenStreetMap"
     }).addTo(transportMap);
 
-    // SPA + layout fix
+    // SPA + layout + Chrome subpixel rounding fix
     setTimeout(() => {
+        const mapEl = document.getElementById("transport-map");
+        if (!mapEl) return;
+
+        const rect = mapEl.getBoundingClientRect();
+
+        mapEl.style.width  = Math.floor(rect.width)  + "px";
+        mapEl.style.height = Math.floor(rect.height) + "px";
+
         transportMap.invalidateSize();
     }, 200);
 }
