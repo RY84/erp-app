@@ -90,7 +90,7 @@ body {
     height: 56px;
     background: rgba(0, 0, 0, 0.75);
     display: flex;
-    align-items: center;
+    align-items: stretch;   /* ⬅️ ZAMIANA */
     justify-content: space-between;
     padding: 0 16px;
     border-bottom: 1px solid #222;
@@ -104,9 +104,11 @@ body {
 }
 
 .topbar button {
-    height: 36px;
+    height: 100%;
     background: #1f1f1f;
     border: 1px solid #333;
+    border-top: none;
+    border-bottom: none;
     color: #e6e6e6;
     padding: 0 20px;
     font-size: 14px;
@@ -114,7 +116,7 @@ body {
     cursor: pointer;
     display: flex;
     align-items: center;
-    border-radius: 0px;
+    border-radius: 0;
 }
 
 .topbar button:hover {
