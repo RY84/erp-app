@@ -296,3 +296,18 @@ body {
     border-collapse: collapse;
     font-size: 14px;
 }
+
+/* ================= LEAFLET FIX ================= */
+
+.leaflet-container {
+    background: #000;
+}
+
+.leaflet-tile {
+    outline: 1px solid transparent;
+}
+
+.leaflet-pane,
+.leaflet-tile-pane {
+    transform: translateZ(0);
+}
