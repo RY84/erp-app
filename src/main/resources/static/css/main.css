@@ -197,7 +197,8 @@ body {
 /* ================= KONTRAKT WIDOKU ================= */
 
 .view-header {
-    padding: 24px 24px 12px 24px;
+    margin: 0 24px;
+    padding: 24px 0 12px 0;
     display: flex;
     justify-content: center;
 }
@@ -206,7 +207,6 @@ body {
     font-size: 24px;
 }
 
-
 .view-content {
     flex: 1;
     padding: 24px;
@@ -214,6 +214,7 @@ body {
     background: rgba(0, 0, 0, 0.6);
     border-top: 1px solid #222;
 }
+
 
 /* ================= TRANSPORT ================= */
 
@@ -234,10 +235,10 @@ body {
     background: rgba(255, 255, 255, 0.08);
     border: none;
     border-right: 1px solid #222;
-    color: #aaa;
-    padding: 0 18px;
-    font-size: 13px;
-    cursor: not-allowed;
+    color: #e6e6e6;
+    padding: 0 20px;
+    font-size: 14px;
+    cursor: pointer;
     display: flex;
     align-items: center;
     border-radius: 0;
