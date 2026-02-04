@@ -90,7 +90,7 @@ body {
     height: 56px;
     background: rgba(0, 0, 0, 0.75);
     display: flex;
-    align-items: stretch;   /* ⬅️ ZAMIANA */
+    align-items: stretch;
     justify-content: space-between;
     padding: 0 16px;
     border-bottom: 1px solid #222;
@@ -99,13 +99,13 @@ body {
 .topbar-left,
 .topbar-right {
     display: flex;
-    align-items: center;
+    align-items: stretch;
     gap: 14px;
 }
 
 .topbar button {
     height: 100%;
-    background: #1f1f1f;
+    background: rgba(255, 255, 255, 0.08);
     border: 1px solid #333;
     border-top: none;
     border-bottom: none;
@@ -120,11 +120,11 @@ body {
 }
 
 .topbar button:hover {
-    background: #2a2a2a;
+    background: rgba(255, 255, 255, 0.12);
 }
 
 .topbar button.active {
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.12);
     border-color: #444;
 }
 
