@@ -92,7 +92,7 @@ body {
     display: flex;
     align-items: stretch;
     justify-content: space-between;
-    padding: 0 16px;
+    padding: 0;
     border-bottom: 1px solid #222;
 }
 
@@ -100,7 +100,7 @@ body {
 .topbar-right {
     display: flex;
     align-items: stretch;
-    gap: 14px;
+    gap: 0;
 }
 
 .topbar button {
@@ -127,6 +127,16 @@ body {
     background: rgba(255, 255, 255, 0.12);
     border-color: #444;
 }
+
+#userInfo {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0 16px;
+    font-size: 14px;
+    color: #cfcfcf;
+}
+
 
 /* ================= LAYOUT ================= */
 
