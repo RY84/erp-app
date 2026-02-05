@@ -264,7 +264,7 @@ body {
 
 .map-wrapper {
     flex: 1;
-    margin: 0 24px 24px 24px;
+    margin: 0 24px;
     padding: 0;
     background: rgba(0, 0, 0, 0.45);
     border: 1px solid #222;
@@ -297,14 +297,4 @@ body {
     width: 100%;
     border-collapse: collapse;
     font-size: 14px;
-}
-
-/* ================= LEAFLET SAFE FIX ================= */
-
-.leaflet-container {
-    background: #000;
-}
-
-.leaflet-tile {
-    outline: 1px solid transparent;
 }
