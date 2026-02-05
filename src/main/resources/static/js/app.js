@@ -192,3 +192,15 @@ function setActive(view) {
         );
     });
 }
+
+/* ================= MAP RESIZE FIX ================= */
+
+window.addEventListener("resize", () => {
+    if (!transportMap) return;
+
+    clearTimeout(window.__mapResizeTimer);
+
+    window.__mapResizeTimer = setTimeout(() => {
+        transportMap.invalidateSize();
+    }, 150);
+});
