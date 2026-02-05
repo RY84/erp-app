@@ -214,12 +214,15 @@ body {
 
 .view-content {
     flex: 1;
+    display: flex;
+    flex-direction: column;
     padding: 0;
-    overflow-y: auto;
+    overflow: hidden;
     background: rgba(0, 0, 0, 0.6);
     border-top: 1px solid #222;
     min-height: 0;
 }
+
 
 /* ================= TRANSPORT ================= */
 
