@@ -22,9 +22,6 @@ body {
     background-size: contain, cover;
     background-position: center center, center center;
     color: #e6e6e6;
-
-    display: flex;
-    flex-direction: column;
 }
 
 /* ================= LOGIN (IZOLOWANY) ================= */
@@ -144,7 +141,7 @@ body {
 
 .layout {
     display: flex;
-    height: calc(100vh - 56px);   /* JEDYNA ZMIANA */
+    height: calc(100vh - 56px); /* wracamy do stabilnej wersji */
     overflow: hidden;
 }
 
@@ -198,8 +195,6 @@ body {
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    min-height: 0;
-    min-width: 0;
 }
 
 /* ================= KONTRAKT WIDOKU ================= */
@@ -225,7 +220,6 @@ body {
     overflow: hidden;
     background: rgba(0, 0, 0, 0.6);
     border-top: 1px solid #222;
-    min-height: 0;
 }
 
 /* ================= TRANSPORT ================= */
@@ -253,7 +247,6 @@ body {
     cursor: pointer;
     display: flex;
     align-items: center;
-    border-radius: 0;
 }
 
 .map-toolbar button:first-child {
@@ -271,13 +264,12 @@ body {
 
 .map-wrapper {
     flex: 1;
-    margin: 0 24px;
+    margin: 0 24px 24px 24px; /* lekki odstęp od dołu */
     padding: 6px;
     background: rgba(0, 0, 0, 0.45);
     border: 1px solid #222;
     border-radius: 8px;
     display: flex;
-    min-height: 0;
 }
 
 #transport-map {
@@ -285,7 +277,6 @@ body {
     width: 100%;
     height: 100%;
     border-radius: 6px;
-    overflow: hidden;
 }
 
 /* ================= DASHBOARD ================= */
