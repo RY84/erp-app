@@ -86,19 +86,28 @@ body {
     border-color: #666;
 }
 
-.login-form button {
-    height: 42px;
-    border: none;
-    border-radius: 6px;
-    background: rgba(255, 255, 255, 0.15);
-    color: #ffffff;
-    font-size: 15px;
+/* ================= PRZYCISKI (UJEDNOLICONE) ================= */
+
+.btn {
+    height: 44px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid #333;
+    color: #e6e6e6;
+    font-size: 16px;
     cursor: pointer;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     transition: background 0.2s ease;
 }
 
-.login-form button:hover {
-    background: rgba(255, 255, 255, 0.25);
+.btn:hover {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.btn.active {
+    background: rgba(255, 255, 255, 0.12);
 }
 
 /* ================= TOPBAR ================= */
@@ -117,53 +126,22 @@ body {
     align-items: stretch;
 }
 
-.topbar button {
-    height: 100%;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid #333;
-    border-top: none;
-    border-bottom: none;
-    color: #e6e6e6;
-    padding: 0 20px;
-    font-size: 16px;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-}
-
-.topbar button:hover {
-    background: rgba(255, 255, 255, 0.12);
-}
-
-.topbar button.active {
-    background: rgba(255, 255, 255, 0.12);
-}
-
-#userInfo {
-    display: flex;
-    align-items: center;
-    padding: 0 16px;
-}
-
 /* ================= LAYOUT ================= */
 
-/* NOWE – NAPRAWA */
+/* USUWAMY layout-wrapper z logiki wysokości */
 .layout-wrapper {
+    padding-top: 24px; /* odstęp od topbara */
     flex: 1;
     display: flex;
-    flex-direction: column;
     min-height: 0;
-    padding-top: 24px; /* odstęp od topbara */
 }
 
+/* KLUCZOWE DLA MAPY */
 .layout {
     flex: 1;
     display: flex;
     min-height: 0;
-    overflow: hidden;
 }
-
-/* ================= SIDEBAR ================= */
 
 .sidebar {
     width: 220px;
