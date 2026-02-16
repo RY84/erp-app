@@ -225,13 +225,3 @@ window.addEventListener("resize", () => {
         });
     });
 });
-
-/* Uruchom obserwator po stworzeniu mapy */
-document.addEventListener("DOMContentLoaded", () => {
-    const interval = setInterval(() => {
-        if (transportMap) {
-            observeMapResize();
-            clearInterval(interval);
-        }
-    }, 100);
-});
