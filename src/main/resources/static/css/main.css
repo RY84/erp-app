@@ -23,8 +23,8 @@ body {
     background-position: center center, center center;
     color: #e6e6e6;
 
-    display: flex;              /* <-- DODANE */
-    flex-direction: column;     /* <-- DODANE */
+    display: flex;
+    flex-direction: column;
 }
 
 /* ================= LOGIN (IZOLOWANY) ================= */
@@ -145,6 +145,7 @@ body {
 .layout {
     display: flex;
     flex: 1;
+    min-height: 0;   /* JEDYNA DODANA LINIA */
     overflow: hidden;
 }
 
