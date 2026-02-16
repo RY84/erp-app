@@ -109,14 +109,13 @@ function createTransportMap() {
     const container = document.getElementById("transport-map");
     if (!container) return;
 
-    // jeżeli mapa istniała wcześniej — usuń ją poprawnie
     if (transportMap) {
         transportMap.remove();
         transportMap = null;
     }
 
     transportMap = L.map(container).setView(
-        [52.2297, 21.0122], // Polska
+        [52.2297, 21.0122],
         6
     );
 
@@ -125,7 +124,6 @@ function createTransportMap() {
         attribution: "© OpenStreetMap"
     }).addTo(transportMap);
 
-    // SPA + layout + Chrome subpixel rounding fix
     setTimeout(() => {
         const mapEl = document.getElementById("transport-map");
         if (!mapEl) return;
@@ -195,12 +193,35 @@ function setActive(view) {
 
 /* ================= MAP RESIZE FIX ================= */
 
+let __mapObserver = null;
+
+function observeMapResize() {
+    const mapEl = document.getElementById("transport-map");
+    if (!mapEl || !transportMap) return;
+
+    if (__mapObserver) {
+        __mapObserver.disconnect();
+    }
+
+    __mapObserver = new ResizeObserver(() => {
+        transportMap.invalidateSize();
+    });
+
+    __mapObserver.observe(mapEl);
+}
+
 window.addEventListener("resize", () => {
     if (!transportMap) return;
 
-    clearTimeout(window.__mapResizeTimer);
+    transportMap.invalidateSize();
+});
 
-    window.__mapResizeTimer = setTimeout(() => {
-        transportMap.invalidateSize();
-    }, 150);
+/* Uruchom obserwator po stworzeniu mapy */
+document.addEventListener("DOMContentLoaded", () => {
+    const interval = setInterval(() => {
+        if (transportMap) {
+            observeMapResize();
+            clearInterval(interval);
+        }
+    }, 100);
 });

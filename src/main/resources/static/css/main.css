@@ -195,6 +195,8 @@ body {
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    min-height: 0;
+    min-width: 0; /* <-- JEDYNA NOWA LINIA */
 }
 
 /* ================= KONTRAKT WIDOKU ================= */
@@ -222,7 +224,6 @@ body {
     border-top: 1px solid #222;
     min-height: 0;
 }
-
 
 /* ================= TRANSPORT ================= */
 
@@ -276,7 +277,6 @@ body {
     min-height: 0;
 }
 
-
 #transport-map {
     flex: 1;
     width: 100%;
@@ -284,8 +284,6 @@ body {
     border-radius: 6px;
     overflow: hidden;
 }
-
-
 
 /* ================= DASHBOARD ================= */
 
