@@ -141,7 +141,8 @@ body {
 
 .layout {
     display: flex;
-    height: calc(100vh - 56px); /* wracamy do stabilnej wersji */
+    height: calc(100vh - 56px);
+    min-height: 0; /* KLUCZOWE */
     overflow: hidden;
 }
 
@@ -195,6 +196,7 @@ body {
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    min-height: 0; /* KLUCZOWE */
 }
 
 /* ================= KONTRAKT WIDOKU ================= */
@@ -220,6 +222,7 @@ body {
     overflow: hidden;
     background: rgba(0, 0, 0, 0.6);
     border-top: 1px solid #222;
+    min-height: 0; /* KLUCZOWE */
 }
 
 /* ================= TRANSPORT ================= */
@@ -264,12 +267,13 @@ body {
 
 .map-wrapper {
     flex: 1;
-    margin: 0 24px 24px 24px; /* lekki odstęp od dołu */
+    margin: 0 24px 24px 24px;
     padding: 6px;
     background: rgba(0, 0, 0, 0.45);
     border: 1px solid #222;
     border-radius: 8px;
     display: flex;
+    min-height: 0; /* KLUCZOWE */
 }
 
 #transport-map {
