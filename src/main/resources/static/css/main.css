@@ -141,7 +141,7 @@ body {
 
 .layout {
     display: flex;
-    height: calc(100vh - 56px);
+    flex: 1; /* <-- ZAMIANA zamiast vh */
     overflow: hidden;
 }
 
@@ -196,7 +196,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 0;
-    min-width: 0; /* <-- JEDYNA NOWA LINIA */
+    min-width: 0;
 }
 
 /* ================= KONTRAKT WIDOKU ================= */
