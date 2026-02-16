@@ -22,6 +22,9 @@ body {
     background-size: contain, cover;
     background-position: center center, center center;
     color: #e6e6e6;
+
+    display: flex;              /* <-- DODANE */
+    flex-direction: column;     /* <-- DODANE */
 }
 
 /* ================= LOGIN (IZOLOWANY) ================= */
@@ -141,7 +144,7 @@ body {
 
 .layout {
     display: flex;
-    flex: 1; /* <-- ZAMIANA zamiast vh */
+    flex: 1;
     overflow: hidden;
 }
 
