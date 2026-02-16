@@ -127,9 +127,6 @@ function createTransportMap() {
     }).addTo(transportMap);
 
     setTimeout(() => {
-        const mapEl = document.getElementById("transport-map");
-        if (!mapEl) return;
-
         transportMap.invalidateSize();
     }, 200);
 }
@@ -210,7 +207,11 @@ function observeMapResize() {
 window.addEventListener("resize", () => {
     if (!transportMap) return;
 
-    transportMap.invalidateSize();
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+            transportMap.invalidateSize();
+        });
+    });
 });
 
 /* Uruchom obserwator po stworzeniu mapy */
