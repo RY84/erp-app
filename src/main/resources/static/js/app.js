@@ -126,9 +126,17 @@ function createTransportMap() {
         attribution: "© OpenStreetMap"
     }).addTo(transportMap);
 
-    setTimeout(() => {
-        transportMap.invalidateSize();
-    }, 200);
+    /* === ZMIANA 1: uruchom obserwator od razu po utworzeniu mapy === */
+    observeMapResize();
+
+    /* === ZMIANA 2: stabilne dociągnięcie rozmiaru po renderze flex/vh === */
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+            if (transportMap) {
+                transportMap.invalidateSize();
+            }
+        });
+    });
 }
 
 /* ================= NAVIGATION ================= */
@@ -198,7 +206,9 @@ function observeMapResize() {
     }
 
     __mapObserver = new ResizeObserver(() => {
-        transportMap.invalidateSize();
+        if (transportMap) {
+            transportMap.invalidateSize();
+        }
     });
 
     __mapObserver.observe(mapEl);
@@ -209,7 +219,9 @@ window.addEventListener("resize", () => {
 
     requestAnimationFrame(() => {
         requestAnimationFrame(() => {
-            transportMap.invalidateSize();
+            if (transportMap) {
+                transportMap.invalidateSize();
+            }
         });
     });
 });
