@@ -73,9 +73,7 @@ function loadView(view, push = true) {
             }
 
             if (view === "transport") {
-                requestAnimationFrame(() => {
-                    initTransportMap();
-                });
+                initTransportMap();
             }
         });
 }
@@ -126,17 +124,18 @@ function createTransportMap() {
         attribution: "© OpenStreetMap"
     }).addTo(transportMap);
 
-    /* === ZMIANA 1: uruchom obserwator od razu po utworzeniu mapy === */
-    observeMapResize();
+    /* === PRZYWRÓCONA STABILNA WERSJA WYMUSZANIA ROZMIARU === */
+    setTimeout(() => {
+        const mapEl = document.getElementById("transport-map");
+        if (!mapEl) return;
 
-    /* === ZMIANA 2: stabilne dociągnięcie rozmiaru po renderze flex/vh === */
-    requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-            if (transportMap) {
-                transportMap.invalidateSize();
-            }
-        });
-    });
+        const rect = mapEl.getBoundingClientRect();
+
+        mapEl.style.width  = Math.floor(rect.width)  + "px";
+        mapEl.style.height = Math.floor(rect.height) + "px";
+
+        transportMap.invalidateSize();
+    }, 200);
 }
 
 /* ================= NAVIGATION ================= */
@@ -192,36 +191,3 @@ function setActive(view) {
         );
     });
 }
-
-/* ================= MAP RESIZE FIX ================= */
-
-let __mapObserver = null;
-
-function observeMapResize() {
-    const mapEl = document.getElementById("transport-map");
-    if (!mapEl || !transportMap) return;
-
-    if (__mapObserver) {
-        __mapObserver.disconnect();
-    }
-
-    __mapObserver = new ResizeObserver(() => {
-        if (transportMap) {
-            transportMap.invalidateSize();
-        }
-    });
-
-    __mapObserver.observe(mapEl);
-}
-
-window.addEventListener("resize", () => {
-    if (!transportMap) return;
-
-    requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-            if (transportMap) {
-                transportMap.invalidateSize();
-            }
-        });
-    });
-});
