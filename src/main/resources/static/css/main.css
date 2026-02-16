@@ -144,8 +144,7 @@ body {
 
 .layout {
     display: flex;
-    flex: 1;
-    min-height: 0;   /* JEDYNA DODANA LINIA */
+    height: calc(100vh - 56px);   /* JEDYNA ZMIANA */
     overflow: hidden;
 }
 
