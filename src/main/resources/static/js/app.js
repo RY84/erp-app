@@ -73,7 +73,9 @@ function loadView(view, push = true) {
             }
 
             if (view === "transport") {
-                initTransportMap();
+                requestAnimationFrame(() => {
+                    initTransportMap();
+                });
             }
         });
 }
