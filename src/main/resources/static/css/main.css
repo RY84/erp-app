@@ -47,16 +47,23 @@ body {
     align-items: center;
     gap: 20px;
     padding: 40px;
-    background: rgba(0, 0, 0, 0.75);
+    background: rgba(0, 0, 0, 0.5);
     border: 1px solid #222;
     border-radius: 10px;
-    backdrop-filter: blur(4px);
+    backdrop-filter: blur(2px);
 }
 
 .login-title {
     font-size: 28px;
     font-weight: 600;
     letter-spacing: 1px;
+}
+
+.login-subtitle {
+    font-size: 13px;
+    color: #aaaaaa;
+    letter-spacing: 0.5px;
+    margin-top: -10px;
 }
 
 .login-logo img {
@@ -100,6 +107,7 @@ body {
     align-items: center;
     justify-content: center;
     transition: background 0.2s ease;
+    border-radius: 6px;
 }
 
 .btn:hover {
