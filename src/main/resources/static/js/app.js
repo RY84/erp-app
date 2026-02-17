@@ -124,19 +124,19 @@ function createTransportMap() {
         attribution: "© OpenStreetMap"
     }).addTo(transportMap);
 
-    /* === PRZYWRÓCONA STABILNA WERSJA WYMUSZANIA ROZMIARU === */
+    // po inicjalizacji upewniamy się, że mapa ma poprawny rozmiar
     setTimeout(() => {
-        const mapEl = document.getElementById("transport-map");
-        if (!mapEl) return;
-
-        const rect = mapEl.getBoundingClientRect();
-
-        mapEl.style.width  = Math.floor(rect.width)  + "px";
-        mapEl.style.height = Math.floor(rect.height) + "px";
-
         transportMap.invalidateSize();
-    }, 200);
+    }, 100);
 }
+
+// 🔁 reagowanie na zmianę rozmiaru okna
+window.addEventListener("resize", () => {
+    if (transportMap) {
+        transportMap.invalidateSize();
+    }
+});
+
 
 /* ================= NAVIGATION ================= */
 
