@@ -47,10 +47,10 @@ body {
     align-items: center;
     gap: 20px;
     padding: 40px;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.6);
     border: 1px solid #222;
     border-radius: 10px;
-    backdrop-filter: blur(2px);
+    backdrop-filter: blur(3px);
 }
 
 .login-title {
@@ -61,7 +61,6 @@ body {
 
 .login-subtitle {
     font-size: 13px;
-    color: #aaaaaa;
     letter-spacing: 0.5px;
     margin-top: -10px;
 }
@@ -107,7 +106,7 @@ body {
     align-items: center;
     justify-content: center;
     transition: background 0.2s ease;
-    border-radius: 7px;
+    border-radius: 6px;
 }
 
 .btn:hover {
@@ -125,14 +124,21 @@ body {
     background: rgba(0, 0, 0, 0.75);
     display: flex;
     justify-content: space-between;
+    align-items: center; /* ← DODAJ TO */
     border-bottom: 1px solid #222;
+    padding: 0 16px; /* opcjonalnie lepszy odstęp */
 }
 
-.topbar-left,
+.topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;   /* ← odstęp między elementami */
+}
 .topbar-right {
     display: flex;
-    align-items: stretch;
+    align-items: center; /* ← ZAMIEN stretch na center */
 }
+
 
 /* ================= LAYOUT ================= */
 
