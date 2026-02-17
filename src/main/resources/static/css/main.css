@@ -107,7 +107,7 @@ body {
     align-items: center;
     justify-content: center;
     transition: background 0.2s ease;
-    border-radius: 6px;
+    border-radius: 7px;
 }
 
 .btn:hover {
