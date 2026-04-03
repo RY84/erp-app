@@ -16,6 +16,7 @@ function loadLogin() {
         .then(html => {
             document.getElementById("root").innerHTML = html;
             bindLogin();
+            bindRegisterLink();
         });
 }
 
@@ -33,6 +34,37 @@ function bindLogin() {
 
         history.replaceState(null, "", "#dashboard");
         loadApp(false);
+    });
+}
+
+function bindRegisterLink() {
+    const link = document.getElementById("registerLink");
+    if (!link) return;
+
+    link.addEventListener("click", e => {
+        e.preventDefault();
+        loadRegister();
+    });
+}
+
+/* ================= REGISTER ================= */
+
+function loadRegister() {
+    fetch("views/register.html")
+        .then(r => r.text())
+        .then(html => {
+            document.getElementById("root").innerHTML = html;
+            bindBackToLogin();
+        });
+}
+
+function bindBackToLogin() {
+    const link = document.getElementById("backToLogin");
+    if (!link) return;
+
+    link.addEventListener("click", e => {
+        e.preventDefault();
+        loadLogin();
     });
 }
 
@@ -119,24 +151,21 @@ function createTransportMap() {
         6
     );
 
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{y}.png", {
         maxZoom: 19,
         attribution: "© OpenStreetMap"
     }).addTo(transportMap);
 
-    // po inicjalizacji upewniamy się, że mapa ma poprawny rozmiar
     setTimeout(() => {
         transportMap.invalidateSize();
     }, 100);
 }
 
-// 🔁 reagowanie na zmianę rozmiaru okna
 window.addEventListener("resize", () => {
     if (transportMap) {
         transportMap.invalidateSize();
     }
 });
-
 
 /* ================= NAVIGATION ================= */
 

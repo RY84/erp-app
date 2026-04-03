@@ -23,8 +23,8 @@ html, body {
 body {
     background-color: #000;
     background-image:
-        url("../tlo_2.png"),
-        url("../cosmos.png");
+            url("../tlo_2.png"),
+            url("../cosmos.png");
     background-repeat: no-repeat, no-repeat;
     background-size: contain, cover;
     background-position: center center, center center;
@@ -77,6 +77,15 @@ body {
     width: 280px;
 }
 
+/* NOWY ELEMENT – informacja */
+.form-info {
+    font-size: 12px;
+    color: #8dffb3;
+    text-align: center;
+    margin-bottom: 4px;
+    opacity: 0.85;
+}
+
 .login-form input {
     height: 40px;
     padding: 0 10px;
@@ -92,7 +101,7 @@ body {
     border-color: #666;
 }
 
-/* ================= PRZYCISKI (UJEDNOLICONE) ================= */
+/* ================= PRZYCISKI ================= */
 
 .btn {
     height: 44px;
@@ -117,6 +126,23 @@ body {
     background: rgba(255, 255, 255, 0.12);
 }
 
+/* ================= LINK REJESTRACJI ================= */
+
+.login-register {
+    margin-top: 4px;
+    text-align: center;
+}
+
+.login-register a {
+    color: #8dffb3;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.login-register a:hover {
+    color: #b8ffcf;
+}
+
 /* ================= TOPBAR ================= */
 
 .topbar {
@@ -124,33 +150,31 @@ body {
     background: rgba(0, 0, 0, 0.75);
     display: flex;
     justify-content: space-between;
-    align-items: center; /* ← DODAJ TO */
+    align-items: center;
     border-bottom: 1px solid #222;
-    padding: 0 16px; /* opcjonalnie lepszy odstęp */
+    padding: 0 16px;
 }
 
 .topbar-left {
     display: flex;
     align-items: center;
-    gap: 16px;   /* ← odstęp między elementami */
-}
-.topbar-right {
-    display: flex;
-    align-items: center; /* ← ZAMIEN stretch na center */
+    gap: 16px;
 }
 
+.topbar-right {
+    display: flex;
+    align-items: center;
+}
 
 /* ================= LAYOUT ================= */
 
-/* USUWAMY layout-wrapper z logiki wysokości */
 .layout-wrapper {
-    padding-top: 24px; /* odstęp od topbara */
+    padding-top: 24px;
     flex: 1;
     display: flex;
     min-height: 0;
 }
 
-/* KLUCZOWE DLA MAPY */
 .layout {
     flex: 1;
     display: flex;
